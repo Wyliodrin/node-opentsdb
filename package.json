@@ -1,0 +1,28 @@
+{
+  "name": "node-opentsdb",
+  "version": "0.0.0",
+  "description": "OpenTSDB wrapper",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "devDependencies": {
+    "superagent": "*",
+    "underscore": "*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wyliodrin/node-opentsdb.git"
+  },
+  "keywords": [
+    "database",
+    "openTSDB"
+  ],
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "960850e7d725c922c4002d06cca417e74b099be9"
+}
