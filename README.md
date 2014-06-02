@@ -22,7 +22,7 @@ Examples of usage can be found in **example** folder:
 ***/api/put*** endpoint can be reached through **insert** method:
 
 
-`
+``` js
 var db = require('node-opentsdb');
 
 var tags = {"host": "127.0.0.1"};
@@ -38,7 +38,7 @@ db.insert(dataPoint, function (err, data){
     else{
         console.log(data);
     }
-}); `
+}); ```
 
 
 where callback function is optional. Returned result will contain detailed information of API response:
