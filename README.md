@@ -22,7 +22,7 @@ Examples of usage can be found in **example** folder:
 ***/api/put*** endpoint can be reached through **insert** method:
 
 
-```
+```js
 var db = require('node-opentsdb');
 
 var tags = {"host": "127.0.0.1"};
@@ -38,17 +38,20 @@ db.insert(dataPoint, function (err, data){
     else{
         console.log(data);
     }
-}); ```
+}); 
+```
 
 
 where callback function is optional. Returned result will contain detailed information of API response:
 
+```js
     {"errors":[],"failed":0,"success":1}
+```
 
 Previous example is equivalent to an HTTP API request sent to */api/put?details* endpoint with parameters:
 
 
-```
+```js
 {
     "metric": "sys.cpu",
     "timestamp": 1346946400,
@@ -56,14 +59,15 @@ Previous example is equivalent to an HTTP API request sent to */api/put?details*
     "tags": {
        "host": "127.0.0.1"
     }
-}```
+}
+```
 
 A data point can be created using **Model.DataPoint** helper method or directly from javascript (as a JSON object). First approach adds an overhead but validates data that must be sent to OpenTSDB.  
 
  
 **select** method correspons to  ***/api/query*** endpoint: 
 
-```
+```js
 var  queries = [];
 
 var metric = "sys.cpu";
@@ -97,14 +101,15 @@ db.select(query, function (err, data){
     else{
         console.log(data);
     }
-});```
+});
+```
 
 
 As for */api/put*, JSON query object can be built using Model helper methods (**Model.MetricQuery**/**Model.TSUIDQuery**/**Model.Select**/**Model.RateOptions**) or straight from javascript. 
 
 Preceding example sends a JSON object to */api/query* endpoint:
 
-```
+```js
 { start: '1w-ago',
   end: '1s-ago',
   queries:
@@ -118,27 +123,30 @@ Preceding example sends a JSON object to */api/query* endpoint:
   noAnnotations: false,
   globalAnnotations: true,
   msResolution: true,
-  showTSUIDs: true }```
+  showTSUIDs: true }
+```
 
 
 where first query is a **Metric Query**:
 
-```
+```js
 { aggregator: 'sum',
        metric: 'sys.cpu',
        rate: false,
        rateOptions: null,
        downsample: null,
-       tags: {"host": "127.0.0.1"} }```
+       tags: {"host": "127.0.0.1"} }
+```
 
  and the second one is a **TSUID Query**: 
 
+```js
+ { aggregator: 'sum', tsuids:["000001000001000002","000001000001000002000002000003"] }
 ```
- { aggregator: 'sum', tsuids:["000001000001000002","000001000001000002000002000003"] }```
 
 For a **Metric Query** with **rate** set to **true**, a **rateOptions** object must be provided (**Model.RateOptions** can be used for a rateOptions object):
 
-```
+```js
 var counter = true;
 var counterMax = 100;
 var resetValue = 0;
@@ -152,18 +160,20 @@ var tags = {"host": "127.0.0.1"};
 var downsample = null;
 
 //aggregator, metric, rate, rateOptions, downsample, tags
-var query = db.Model.MetricQuery(util.AGGREGATOR.sum, metric, rate, rateOptions, downsample, tags);```
+var query = db.Model.MetricQuery(util.AGGREGATOR.sum, metric, rate, rateOptions, downsample, tags);
+```
 
 Resulted query JSON object is:
 
-```
+```js
 { aggregator: 'sum',
   metric: 'sys.cpu',
   rate: true,
   rateOptions: { counter: true, counterMax: 100, resetValue: 0 },
   downsample: null,
   tags: { host: '127.0.0.1' } 
-}```
+}
+```
 
 ## Settings
 
