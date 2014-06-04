@@ -1,3 +1,4 @@
+var db = require('node-opentsdb');
 
 var  queries = [];
 
