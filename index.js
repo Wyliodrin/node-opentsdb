@@ -7,7 +7,7 @@
 'use strict';
 var Model =  require('./model/model');
 var request =  require('superagent');
-var config =  require('config');
+var config =  require('./config');
 var util = require('./lib/util');
 
 var HOST = config.HOST;
